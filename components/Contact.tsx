@@ -4,7 +4,7 @@ import type { Copy } from '@/lib/content';
 import type { PublishedSite } from '@/lib/site-content';
 
 export function Contact({ t, site, onPrepare }: { t: Copy; site: PublishedSite; onPrepare: (inquiry: string) => void }) {
-  return <section id="contact" className="contact section-pad"><div className="contact-copy reveal"><span className="eyebrow">{t.contact}</span><h2>{t.contactTitle}</h2><p>{t.contactText}</p>
+  return <section className="contact section-pad"><div className="contact-copy reveal"><span className="eyebrow">{t.contact}</span><h2>{t.contactTitle}</h2><p>{t.contactText}</p>
     {site.phones.map((phone, index) => <a key={index} className={index ? 'phone secondary-phone' : 'phone'} href={`tel:${phone.replace(/[^+\d]/g, '')}`}>{phone} <ArrowUpRight size={19} /></a>)}
     {site.catalogue && <a className="text-link catalogue-download" href={site.catalogue} download>{t.catalogue}<ArrowUpRight size={19} /></a>}
     <p className="micro catalogue-company">TDL Engineering PLC / The Design Lab</p><span className="micro">{t.location}</span>

@@ -48,11 +48,11 @@ export function Gallery({ t, language, onOpen }: {
         return <button key={item.src} type="button" className={`study reveal${wide ? ' wide' : ''}`}
           aria-label={`${title}: ${photo} ${album.indexOf(item.src) + 1}`}
           onClick={() => onOpen(title, album, album.indexOf(item.src))}>
-          <div className="study-image">
+          <div className="study-image reveal-frame">
             <Media src={item.src} alt="" loading="lazy" sizes={wide ? '(max-width: 720px) 100vw, 66vw' : '(max-width: 720px) 50vw, 33vw'} />
             <span className="image-open" aria-hidden="true"><Plus size={18} /></span>
           </div>
-          <span className="collection-caption">{title}</span>
+          <span className="collection-caption reveal-caption">{title}</span>
         </button>;
       })}
     </div>

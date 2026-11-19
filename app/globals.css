@@ -508,9 +508,67 @@ html[data-theme="dark"] {
   }
 }
 
+.scroll-section {
+  display: flow-root;
+}
+
+.scroll-section-body {
+  position: relative;
+}
+
 @media (prefers-reduced-motion: no-preference) {
+  .scroll-section[data-scroll-ready] {
+    overflow: clip;
+    --section-lift: 136px;
+    --section-zoom: .065;
+    --section-inset: 34px;
+  }
+
+  .scroll-section[data-scroll-ready] > .scroll-section-body {
+    --section-unsettled: calc(1 - var(--section-progress, 1));
+    transform-origin: center top;
+    transform: translateY(calc(var(--section-lift) * var(--section-unsettled)))
+      scale(calc(1 - var(--section-zoom) * var(--section-unsettled)));
+    opacity: calc(1 - .28 * var(--section-unsettled));
+    clip-path: inset(0 calc(var(--section-inset) * var(--section-unsettled))
+      round calc(24px * var(--section-unsettled)));
+  }
+
+  .scroll-section[data-scroll-ready] > .scroll-section-body::before {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    inset: 0 0 auto;
+    height: 2px;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, var(--accent) 28%, var(--accent) 72%, transparent);
+    opacity: var(--section-unsettled);
+    transform: scaleX(calc(.28 + .72 * var(--section-progress, 1)));
+  }
+
+  .scroll-section[data-scroll-ready]:focus-within > .scroll-section-body {
+    transform: none;
+    opacity: 1;
+    clip-path: none;
+  }
+
+  .scroll-section[data-scroll-ready]:focus-within > .scroll-section-body::before {
+    opacity: 0;
+  }
+
+  @media (max-width: 720px) {
+    .scroll-section[data-scroll-ready] {
+      --section-lift: 96px;
+      --section-zoom: .045;
+      --section-inset: 8px;
+    }
+  }
+
   :root {
     --arrival-ease: cubic-bezier(.22, 1, .36, 1);
+    --scroll-reveal-ease: cubic-bezier(.22, .7, .24, 1);
+    --scroll-reveal-offset: 56px;
+    --scroll-reveal-stagger: 95ms;
   }
 
   .site-header .brand,
@@ -535,19 +593,19 @@ html[data-theme="dark"] {
 
   .hero-title-line > * {
     display: block;
-    animation: title-arrive .85s var(--arrival-ease) .09s both;
+    animation: title-arrive 1s var(--arrival-ease) .08s both;
   }
 
   .hero-title-line + .hero-title-line > * {
-    animation-delay: .17s;
+    animation-delay: .23s;
   }
 
   .intro-row {
-    animation: content-arrive .76s var(--arrival-ease) .26s both;
+    animation: content-arrive .88s var(--arrival-ease) .34s both;
   }
 
   .hero-image img {
-    animation: photo-arrive 1.25s var(--arrival-ease) .12s both;
+    animation: photo-arrive 1.45s var(--arrival-ease) .12s both;
   }
 
   .hero-image .image-caption,
@@ -560,22 +618,100 @@ html[data-theme="dark"] {
     animation: none;
   }
 
-  /* Start at full visibility until the observer can run the animation. */
-  .reveal.visible {
-    animation: content-arrive .68s var(--arrival-ease) var(--reveal-delay, 0ms) backwards;
+  .reveal[data-reveal-state="pending"] {
+    opacity: 0;
+    translate: 0 var(--scroll-reveal-offset);
   }
 
-  .reveal.visible:focus-within,
-  .reveal.visible:focus-visible {
-    animation: none;
+  .reveal[data-reveal-state="shown"] {
+    transition:
+      opacity .74s var(--scroll-reveal-ease) var(--reveal-delay, 0ms),
+      translate .92s var(--scroll-reveal-ease) var(--reveal-delay, 0ms);
+  }
+
+  .section-heading.reveal[data-reveal-state] {
+    opacity: 1;
+    translate: none;
+    transition: none;
+  }
+
+  .section-heading[data-reveal-state="pending"] :is(h2, .eyebrow),
+  .section-heading[data-reveal-state="pending"] > :is(p, div:nth-child(2)) {
+    opacity: 0;
+    translate: 0 34px;
+  }
+
+  .section-heading[data-reveal-state="pending"] h2 {
+    clip-path: inset(0 0 100% 0);
+  }
+
+  .section-heading[data-reveal-state="shown"] .eyebrow {
+    transition: opacity .55s ease, translate .68s var(--scroll-reveal-ease);
+  }
+
+  .section-heading[data-reveal-state="shown"] h2 {
+    clip-path: inset(-.14em -2px);
+    transition:
+      clip-path .93s var(--scroll-reveal-ease) .08s,
+      opacity .65s ease .08s,
+      translate .93s var(--scroll-reveal-ease) .08s;
+  }
+
+  .section-heading[data-reveal-state="shown"] > :is(p, div:nth-child(2)) {
+    transition: opacity .68s ease .2s, translate .82s var(--scroll-reveal-ease) .2s;
+  }
+
+  .reveal[data-reveal-state="pending"] .reveal-frame {
+    clip-path: inset(0 0 100% 0);
+  }
+
+  .reveal[data-reveal-state="shown"] .reveal-frame {
+    clip-path: inset(0);
+    transition: clip-path 1.06s var(--scroll-reveal-ease) var(--reveal-delay, 0ms);
+  }
+
+  .reveal[data-reveal-state="pending"] .reveal-caption {
+    opacity: 0;
+    translate: 0 18px;
+  }
+
+  .reveal[data-reveal-state="shown"] .reveal-caption {
+    --caption-delay: calc(var(--reveal-delay, 0ms) + 170ms);
+    transition:
+      opacity .64s ease var(--caption-delay),
+      translate .78s var(--scroll-reveal-ease) var(--caption-delay);
   }
 
   :is(.real-projects, .services, .application-grid, .steps, .photo-grid, .featured-projects) > .reveal:nth-child(3n + 2) {
-    --reveal-delay: 65ms;
+    --reveal-delay: var(--scroll-reveal-stagger);
   }
 
   :is(.real-projects, .services, .application-grid, .steps, .photo-grid, .featured-projects) > .reveal:nth-child(3n + 3) {
-    --reveal-delay: 130ms;
+    --reveal-delay: calc(2 * var(--scroll-reveal-stagger));
+  }
+
+  .hero-image.reveal,
+  footer.reveal {
+    --scroll-reveal-offset: 12px;
+  }
+
+  .hero-image[data-reveal-state] img {
+    animation: none;
+  }
+
+  .reveal[data-reveal-state]:is(:focus-visible, :focus-within),
+  .reveal[data-reveal-state]:is(:focus-visible, :focus-within) :is(.reveal-frame, .reveal-caption) {
+    opacity: 1;
+    translate: none;
+    clip-path: none;
+    transition: none;
+  }
+
+  @media (max-width: 720px) {
+    :root {
+      --scroll-reveal-offset: 40px;
+      --scroll-reveal-stagger: 60ms;
+    }
   }
 
   dialog[open] {
@@ -589,7 +725,7 @@ html[data-theme="dark"] {
 }
 
 @keyframes title-arrive {
-  from { opacity: .15; translate: 0 92%; }
+  from { opacity: .12; translate: 0 102%; }
   to { opacity: 1; translate: none; }
 }
 
@@ -599,8 +735,8 @@ html[data-theme="dark"] {
 }
 
 @keyframes photo-arrive {
-  from { opacity: .64; transform: scale(1.055); }
-  to { opacity: 1; transform: scale(1); }
+  from { opacity: .56; transform: scale(1.08); clip-path: inset(0 0 28% 0); }
+  to { opacity: 1; transform: scale(1); clip-path: inset(0); }
 }
 
 @keyframes dialog-arrive {

@@ -11,6 +11,8 @@ import { Gallery } from './Gallery';
 import { getProjectComparisons, ProjectComparisons } from './ProjectComparisons';
 import { Contact } from './Contact';
 import { ViewerDialog, type ModalState } from './ViewerDialog';
+import { ScrollSection } from './ScrollSection';
+import { useScrollReveals } from './useScrollReveals';
 
 export default function Website({ site }: { site: PublishedSite }) {
   const [language, setLanguage] = useState<Language>('en');
@@ -43,14 +45,7 @@ export default function Website({ site }: { site: PublishedSite }) {
     document.documentElement.dataset.theme = theme;
     try { localStorage.setItem('tdl-language', language); localStorage.setItem('tdl-theme', theme); } catch { /* Memory-only preferences are sufficient. */ }
   }, [language, theme, preferencesReady]);
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
-    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
-    }), { rootMargin: '0px 0px 28px 0px' });
-    document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
-    return () => observer.disconnect();
-  }, []);
+  useScrollReveals();
   return <>
     <a className="skip-link" href="#main-content">{language === 'am' ? 'ወደ ዋናው ይዘት' : language === 'om' ? 'Gara qabiyyee ijoo' : 'Skip to content'}</a>
     <Header sections={{ studio: visibility.company, work, comparisons: comparisons.length > 0, expertise, contact: visibility.contact }} t={t} language={language} theme={theme} onLanguageChange={setLanguage} onThemeChange={() => setTheme(current => current === 'light' ? 'dark' : 'light')} />
@@ -66,32 +61,39 @@ export default function Website({ site }: { site: PublishedSite }) {
               {work && <a className="text-link" href="#work">{t.explore}<ArrowRight size={23} /></a>}
             </div><span className="hero-side">THE DESIGN LAB<br />FORM / LIGHT / IDENTITY</span></div>
           </div>
-          {heroProject && <div className="hero-image"><Media src={heroProject.image} alt={localizedCopy(heroProject.text, language).name} sizes="100vw" priority />
+          {heroProject && <ScrollSection><div className="hero-image reveal"><Media src={heroProject.image} className="reveal-frame" alt={localizedCopy(heroProject.text, language).name} sizes="100vw" priority />
             <span className="image-caption">TDL / 3D FAÇADES</span>
             {work && <a className="scroll-pill" href={`#project-${heroProject.id}`}>{t.scroll}<ArrowRight size={16} /></a>}
-          </div>}
-          {otherFeatured.length > 0 && <div className="featured-projects section-pad">{otherFeatured.map(project => {
+          </div></ScrollSection>}
+          {otherFeatured.length > 0 && <ScrollSection><div className="featured-projects section-pad">{otherFeatured.map(project => {
             const { name } = localizedCopy(project.text, language);
-            const preview = <><Media src={project.image} alt={name} loading="lazy" /><h3>{name}</h3></>;
+            const preview = <><Media src={project.image} className="reveal-frame" alt={name} loading="lazy" /><h3 className="reveal-caption">{name}</h3></>;
             return work ? <a key={project.id} className="reveal" href={`#project-${project.id}`}>{preview}</a> : <article key={project.id} className="reveal">{preview}</article>;
-          })}</div>}
+          })}</div></ScrollSection>}
         </section>}
-        {visibility.extra && t.extraText && <section className="homepage-content section-pad reveal">
+        {visibility.extra && t.extraText && <ScrollSection><section className="homepage-content section-pad reveal">
           {t.extraTitle && <h2>{t.extraTitle}</h2>}<p>{t.extraText}</p>
-        </section>}
+        </section></ScrollSection>}
       </div>
-      {visibility.company && <Studio t={t} team={visibility.team} teamPhoto={site.teamPhoto} catalogue={site.catalogue} />}
-      {work && <Projects t={t} projects={site.projects} language={language}
-        onOpenPhotos={openPhotos} />}
-      {comparisons.length > 0 && <ProjectComparisons comparisons={comparisons} copy={t.comparison} />}
-      {visibility.gallery && <Gallery t={t} language={language} onOpen={openPhotos} />}
-      {expertise && <Expertise t={t} services={site.services} language={language} contact={visibility.contact} />}
-      {visibility.materials && <Materials t={t} contact={visibility.contact} />}
-      {visibility.applications && <Applications t={t} />}
-      {visibility.process && <Process t={t} />}
-      {visibility.contact && <Contact t={t} site={site} onPrepare={text => setModal({ kind: 'inquiry', text })} />}
+      {visibility.company && <ScrollSection id="studio"><Studio t={t} team={visibility.team}
+        teamPhoto={site.teamPhoto} catalogue={site.catalogue} /></ScrollSection>}
+      {work && <ScrollSection id="work"><Projects t={t} projects={site.projects} language={language}
+        onOpenPhotos={openPhotos} /></ScrollSection>}
+      {comparisons.length > 0 && <ScrollSection id="before-after">
+        <ProjectComparisons comparisons={comparisons} copy={t.comparison} />
+      </ScrollSection>}
+      {visibility.gallery && <ScrollSection><Gallery t={t} language={language} onOpen={openPhotos} /></ScrollSection>}
+      {expertise && <ScrollSection id="expertise">
+        <Expertise t={t} services={site.services} language={language} contact={visibility.contact} />
+      </ScrollSection>}
+      {visibility.materials && <ScrollSection><Materials t={t} contact={visibility.contact} /></ScrollSection>}
+      {visibility.applications && <ScrollSection><Applications t={t} /></ScrollSection>}
+      {visibility.process && <ScrollSection><Process t={t} /></ScrollSection>}
+      {visibility.contact && <ScrollSection id="contact">
+        <Contact t={t} site={site} onPrepare={text => setModal({ kind: 'inquiry', text })} />
+      </ScrollSection>}
     </main>
-    <footer><span>TDL / THE DESIGN LAB</span><span>{t.footer}</span><a href="#home">{t.location}<ArrowUpRight size={15} /></a></footer>
+    <footer className="reveal"><span>TDL / THE DESIGN LAB</span><span>{t.footer}</span><a href="#home">{t.location}<ArrowUpRight size={15} /></a></footer>
     <ViewerDialog key={modal?.kind === 'inquiry' ? modal.text : 'image-viewer'} t={t} language={language} modal={modal}
       onClose={() => setModal(null)} onNavigate={direction => setModal(current => {
         if (!current || current.kind === 'inquiry') return current;

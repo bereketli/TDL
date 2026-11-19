@@ -131,7 +131,7 @@ export function ProjectComparisons({ comparisons, copy }: {
     setLoadedPhotos(loaded => loaded.has(src) ? loaded : new Set([...loaded, src]));
   }
 
-  return <section id="before-after" className="project-comparisons section-pad" aria-labelledby="comparison-heading">
+  return <section className="project-comparisons section-pad" aria-labelledby="comparison-heading">
     <div className="section-heading reveal">
       <div><h2 id="comparison-heading">{copy.title}</h2></div>
       <p id="comparison-instructions">{copy.instructions}</p>
@@ -162,7 +162,7 @@ export function ProjectComparisons({ comparisons, copy }: {
             onClick={() => showSlide(next)}><ChevronRight size={20} aria-hidden="true" /></button>
         </div>}
       </figcaption>
-      <div id="project-comparison" ref={frame} className="comparison-slider"
+      <div id="project-comparison" ref={frame} className="comparison-slider reveal-frame"
         style={{ '--split': `${before}%` } as CSSProperties}>
         {comparisons.map((pair, position) => (position === active || position === previous || position === next) &&
           <div key={pair.id} className="comparison-photos" data-active={position === active} aria-hidden={position !== active}>
