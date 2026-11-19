@@ -1,0 +1,186 @@
+{
+  "/images/brand/tdl-logo.webp": {
+    "width": 700,
+    "height": 209
+  },
+  "/images/projects/ceiling.webp": {
+    "width": 1000,
+    "height": 750
+  },
+  "/images/projects/fuyat-detail.webp": {
+    "width": 1024,
+    "height": 1024
+  },
+  "/images/projects/fuyat-during-installation.webp": {
+    "width": 1275,
+    "height": 1700
+  },
+  "/images/projects/fuyat-street-after-installation.webp": {
+    "width": 1273,
+    "height": 1280
+  },
+  "/images/projects/fuyat-street-during-installation.webp": {
+    "width": 720,
+    "height": 1280
+  },
+  "/images/projects/fuyat.webp": {
+    "width": 1024,
+    "height": 1024
+  },
+  "/images/projects/hillside-canopy-lighting.webp": {
+    "width": 1700,
+    "height": 1133
+  },
+  "/images/projects/hillside-detail.webp": {
+    "width": 902,
+    "height": 779
+  },
+  "/images/projects/hillside-entrance-evening.webp": {
+    "width": 1350,
+    "height": 1800
+  },
+  "/images/projects/hillside-panel-fitting.webp": {
+    "width": 1275,
+    "height": 1700
+  },
+  "/images/projects/hillside.webp": {
+    "width": 972,
+    "height": 648
+  },
+  "/images/projects/mesob-after-installation.webp": {
+    "width": 1700,
+    "height": 1700
+  },
+  "/images/projects/mesob-cladding-elevation.webp": {
+    "width": 1600,
+    "height": 1600
+  },
+  "/images/projects/mesob-courtyard-flags.webp": {
+    "width": 1600,
+    "height": 1600
+  },
+  "/images/projects/mesob-detail.webp": {
+    "width": 927,
+    "height": 927
+  },
+  "/images/projects/mesob-during-installation.webp": {
+    "width": 1275,
+    "height": 1700
+  },
+  "/images/projects/mesob-entrance-flags.webp": {
+    "width": 1600,
+    "height": 1600
+  },
+  "/images/projects/mesob-folded-panels.webp": {
+    "width": 1800,
+    "height": 1800
+  },
+  "/images/projects/mesob-front-elevation.webp": {
+    "width": 1800,
+    "height": 1800
+  },
+  "/images/projects/mesob-left-after-installation.webp": {
+    "width": 1700,
+    "height": 1700
+  },
+  "/images/projects/mesob-left-during-installation.webp": {
+    "width": 1275,
+    "height": 1700
+  },
+  "/images/projects/mesob-panel-and-foliage.webp": {
+    "width": 1800,
+    "height": 1800
+  },
+  "/images/projects/mesob-panel-finish.webp": {
+    "width": 1800,
+    "height": 1800
+  },
+  "/images/projects/mesob-screen-and-sky.webp": {
+    "width": 1600,
+    "height": 1600
+  },
+  "/images/projects/mesob-screen-from-below.webp": {
+    "width": 1800,
+    "height": 1800
+  },
+  "/images/projects/mesob-screen-joints.webp": {
+    "width": 1600,
+    "height": 1600
+  },
+  "/images/projects/mesob-screen-oblique.webp": {
+    "width": 1800,
+    "height": 1800
+  },
+  "/images/projects/mesob-screen-shade.webp": {
+    "width": 1200,
+    "height": 1600
+  },
+  "/images/projects/mesob.webp": {
+    "width": 750,
+    "height": 747
+  },
+  "/images/projects/olkai-detail.webp": {
+    "width": 1003,
+    "height": 751
+  },
+  "/images/projects/olkai-entrance-after-construction.webp": {
+    "width": 960,
+    "height": 1280
+  },
+  "/images/projects/olkai-entrance-during-construction.webp": {
+    "width": 1275,
+    "height": 1700
+  },
+  "/images/projects/olkai-gold-frontage.webp": {
+    "width": 1200,
+    "height": 1600
+  },
+  "/images/projects/olkai-panel-alignment.webp": {
+    "width": 1275,
+    "height": 1700
+  },
+  "/images/projects/olkai-panel-installation.webp": {
+    "width": 1800,
+    "height": 1350
+  },
+  "/images/projects/olkai-perforated-corner.webp": {
+    "width": 1200,
+    "height": 1600
+  },
+  "/images/projects/olkai-signed-frontage.webp": {
+    "width": 1200,
+    "height": 1600
+  },
+  "/images/projects/olkai-storefront-during-construction.webp": {
+    "width": 1280,
+    "height": 622
+  },
+  "/images/projects/olkai-walkway.webp": {
+    "width": 1200,
+    "height": 1600
+  },
+  "/images/projects/olkai.webp": {
+    "width": 751,
+    "height": 1001
+  },
+  "/images/projects/signage.webp": {
+    "width": 1329,
+    "height": 749
+  },
+  "/images/studio/coating.webp": {
+    "width": 461,
+    "height": 820
+  },
+  "/images/studio/metalwork-in-progress.webp": {
+    "width": 1600,
+    "height": 1599
+  },
+  "/images/studio/sample.webp": {
+    "width": 453,
+    "height": 451
+  },
+  "/images/studio/team.webp": {
+    "width": 896,
+    "height": 1195
+  }
+}

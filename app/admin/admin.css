@@ -1,0 +1,237 @@
+.editor {
+  min-height: 100vh;
+  background: #f2f4f1;
+  color: #1f2b24;
+  padding: clamp(16px, 4vw, 54px);
+  font-family: DM Sans, Noto Sans Ethiopic, Arial, sans-serif;
+}
+.editor h1 {
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.1;
+}
+.editor h2 {
+  font-size: 29px;
+}
+.editor h3 {
+  font-size: 20px;
+}
+.editor-shell {
+  max-width: 1050px;
+  margin-inline: auto;
+}
+.editor-top, .editor-toolbar, .editor-panel-head, .editor-list-head, .editor-entry-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.editor-top {
+  margin-bottom: 22px;
+}
+.editor-brand {
+  color: #415b4a;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  margin: 0 0 8px;
+}
+.editor-actions, .editor-entry-controls, .editor-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.editor-toolbar {
+  border-top: 1px solid #d1d8cf;
+  padding: 14px 0;
+  font-size: 14px;
+}
+.editor-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 14px;
+}
+.editor button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid #cbd3cc;
+  border-radius: 8px;
+  background: #fff;
+  color: #21372a;
+  font-size: 14px;
+  font-weight: 650;
+}
+.editor button:hover:not(:disabled) {
+  border-color: #427054;
+}
+.editor button:disabled {
+  opacity: .5;
+  cursor: default;
+}
+.editor .editor-primary, .editor-tabs [aria-pressed="true"] {
+  border-color: #24513a;
+  background: #24513a;
+  color: #fff;
+}
+.editor-card {
+  min-width: 0;
+  margin: 0;
+  border: 1px solid #d1d8cf;
+  border-radius: 14px;
+  background: #fff;
+  padding: clamp(15px, 4vw, 32px);
+}
+.editor-panel-head {
+  margin-bottom: 18px;
+}
+.editor-language, .editor-field, .editor-login-form label {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 650;
+}
+.editor :is(input:not([type="checkbox"]), select, textarea) {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid #cbd3cc;
+  border-radius: 8px;
+  background: #fafcf9;
+  color: #1f2b24;
+  padding: 9px 11px;
+  font-size: 16px;
+  font-weight: 400;
+}
+.editor textarea {
+  resize: vertical;
+}
+.editor-grid, .editor-visibility {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.editor-subsection {
+  margin-top: 24px;
+  border-top: 1px solid #e1e6df;
+  padding-top: 20px;
+}
+.editor-list-head {
+  margin-bottom: 10px;
+}
+.editor-entry {
+  margin-bottom: 8px;
+  border: 1px solid #d9e0d8;
+  border-radius: 10px;
+}
+.editor-entry-bar {
+  flex-wrap: nowrap;
+  padding: 7px;
+}
+.editor .editor-entry-name {
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  border-color: transparent;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.editor-entry-name small {
+  color: #506057;
+}
+.editor-entry-controls {
+  flex: none;
+  gap: 4px;
+}
+.editor-entry-controls button {
+  width: 44px;
+  padding: 0;
+}
+.editor-entry-body {
+  border-top: 1px solid #d9e0d8;
+  padding: 14px;
+}
+.editor-entry-body > .editor-grid {
+  margin-top: 12px;
+}
+.editor-toggle {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 10px;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+.editor-toggle input {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  accent-color: #24513a;
+}
+.editor-media {
+  display: grid;
+  justify-items: start;
+  align-content: start;
+  gap: 9px;
+  min-width: 0;
+}
+.editor-media img {
+  width: min(100%, 180px);
+  height: 100px;
+  border-radius: 8px;
+}
+.editor-media .editor-field {
+  width: 100%;
+}
+.editor-media .editor-field span {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.editor-contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: end;
+  margin-bottom: 14px;
+}
+.editor-contact-row .editor-field {
+  flex: 1 1 200px;
+}
+.editor-help {
+  font-size: 14px;
+  margin: 8px 0 14px;
+}
+.editor .editor-error {
+  color: #9e211b;
+}
+.editor-link {
+  color: #24513a;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.editor-login {
+  display: grid;
+  place-items: center;
+}
+.editor-login .editor-card {
+  width: min(100%, 440px);
+}
+.editor-login-form {
+  display: grid;
+  gap: 12px;
+  margin: 22px 0;
+}
+@media (max-width: 580px) {
+  .editor-grid, .editor-visibility {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .editor-entry-bar {
+    flex-wrap: wrap;
+  }
+}
