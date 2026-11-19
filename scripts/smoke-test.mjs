@@ -17,6 +17,7 @@ try {
   }
   if (!response?.ok) throw new Error(`Production page did not start: ${logs}`);
   const html = await response.text();
+  if (!/<html\b[^>]*\bdata-theme="dark"/.test(html)) throw new Error('The initial server-rendered theme should be dark.');
   for (const content of ['Fuyat Hotel', 'Olkai Coffee Roasters', 'Hillside Real Estate', 'Debre Birhan MESOB Center', 'Physical sampling', 'Afaan Oromoo', 'tel:+251911475124', 'id="before-after"']) {
     if (!html.includes(content)) throw new Error(`Server-rendered page missing: ${content}`);
   }
@@ -24,6 +25,8 @@ try {
     ['/images/brand/tdl-logo.webp', 'image/webp'],
     ['/images/projects/fuyat.webp', 'image/webp'],
     ['/images/studio/metalwork-in-progress.webp', 'image/webp'],
+    ['/videos/facade-animation.mp4', 'video/mp4'],
+    ['/videos/facade-animation.webp', 'image/webp'],
     ['/documents/tdl-company-catalogue-2026.pdf', 'application/pdf'],
     ['/_next/image?url=%2Fimages%2Fprojects%2Ffuyat.webp&w=640&q=75', 'image/'],
   ]) {

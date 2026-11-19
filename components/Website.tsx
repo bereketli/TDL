@@ -1,9 +1,10 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import { type Language, type Theme } from '@/lib/content';
+import { defaultTheme, type Language, type Theme } from '@/lib/content';
 import { localizedCopy, siteCopy, type PublishedSite } from '@/lib/site-content';
 import { Header } from './Header';
+import { HeroVideo } from './HeroVideo';
 import { Media } from './Media';
 import { Studio, Projects, Expertise, Materials, Applications, Process } from './CatalogueSections';
 import { Gallery } from './Gallery';
@@ -13,7 +14,7 @@ import { ViewerDialog, type ModalState } from './ViewerDialog';
 
 export default function Website({ site }: { site: PublishedSite }) {
   const [language, setLanguage] = useState<Language>('en');
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>(defaultTheme);
   const [preferencesReady, setPreferencesReady] = useState(false);
   const [modal, setModal] = useState<ModalState>(null);
   const t = siteCopy(site, language);
@@ -56,7 +57,9 @@ export default function Website({ site }: { site: PublishedSite }) {
     <main id="main-content">
       <div id="home">
         {visibility.homepage && <section className="hero">
-          <div className="hero-copy"><div className="eyebrow">{t.eyebrow}</div>
+          <div className="hero-copy">
+            <HeroVideo playLabel={t.playBackgroundVideo} pauseLabel={t.pauseBackgroundVideo} />
+            <div className="eyebrow">{t.eyebrow}</div>
             <h1><span className="hero-title-line"><span>{t.title[0]}</span></span>{' '}
               <span className="hero-title-line"><em>{t.title[1]}</em></span></h1>
             <div className="intro-row"><div><p className="lead">{t.intro}</p><p>{t.intro2}</p>

@@ -2,6 +2,7 @@ import translations from '@/data/translations.json';
 export type Language = keyof typeof translations;
 export type Copy = typeof translations.en;
 export type Theme = 'light' | 'dark';
+export const defaultTheme: Theme = 'dark';
 export const languages: { code: Language; label: string }[] = [
   { code: 'en', label: 'English' }, { code: 'am', label: 'አማርኛ' }, { code: 'om', label: 'Afaan Oromoo' },
 ];

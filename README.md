@@ -13,7 +13,7 @@ npm run dev
 
 Open http://localhost:3000.
 
-To test on a phone connected to the same network, open the Network URL printed by Next.js. If your Mac's LAN IP changes, update `allowedDevOrigins` in `next.config.ts` with the new IP and restart the dev server.
+To test on a phone connected to the same network, open the Network URL printed by Next.js. The dev server allows the Mac’s current private IPv4 addresses at startup. Restart `npm run dev` after switching networks.
 
 For a production build:
 
@@ -31,7 +31,7 @@ The public site runs without environment variables, a database, API keys or an e
 - Four documented real projects, their catalogue photographs, locations, years and façade areas.
 - A filterable collection of real façade, panel detail and fabrication photography.
 - Project photo galleries, scroll reveals and full image viewer with keyboard navigation.
-- Light/dark themes and English, Amharic and Afaan Oromoo content; browser preferences persist when storage is available.
+- Dark mode by default, a light mode option, and English, Amharic and Afaan Oromoo content. Browser preferences persist when storage is available.
 - Responsive navigation, native expandable project details, reduced-motion support, focus states and a skip link.
 - Both published telephone contacts and a downloadable catalogue PDF.
 - Local inquiry preparation and clipboard copy. **The form does not send email or save leads.** Connect a server-side mail or CRM handler if you want production inquiry delivery. No provider is assumed.
