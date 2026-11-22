@@ -57,7 +57,9 @@ export default function Website({ site }: { site: PublishedSite }) {
             <div className="eyebrow">{t.eyebrow}</div>
             <h1><span className="hero-title-line"><span>{t.title[0]}</span></span>{' '}
               <span className="hero-title-line"><em>{t.title[1]}</em></span></h1>
-            <div className="intro-row"><div><p className="lead">{t.intro}</p><p>{t.intro2}</p>
+            <div className="intro-row"><div>
+              <p className="lead">{t.intro}<span className="hero-intro-extended">{' '}{t.introExtended}</span></p>
+              {t.intro2 && <p>{t.intro2}</p>}
               {work && <a className="text-link" href="#work">{t.explore}<ArrowRight size={23} /></a>}
             </div><span className="hero-side">THE DESIGN LAB<br />FORM / LIGHT / IDENTITY</span></div>
           </div>

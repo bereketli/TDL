@@ -12,8 +12,9 @@
       "Engineering precision.",
       "Architectural expression."
     ],
-    "intro": "The Design Lab designs, engineers and fabricates advanced 3D façade systems for commercial and residential buildings. We bring depth, texture and sculptural geometry to architectural envelopes, combining creative vision with the precision of engineering.",
-    "intro2": "Our full service partnership takes your project from consultation and parametric modelling to 3D visualisation, physical sampling, production and site installation. Every fold, pattern and junction is developed to turn an architectural idea into a carefully crafted surface.",
+    "intro": "The Design Lab designs, engineers and fabricates advanced 3D façade systems for commercial and residential buildings.",
+    "introExtended": "We bring depth, texture and sculptural geometry to architectural envelopes, combining creative vision with the precision of engineering.",
+    "intro2": "",
     "explore": "Explore our work",
     "scroll": "SCROLL TO DISCOVER",
     "selected": "BUILT BY TDL",
@@ -196,7 +197,8 @@
       "የምህንድስና ትክክለኛነት።",
       "የሥነ ሕንፃ ውበት።"
     ],
-    "intro": "ዘ ዲዛይን ላብ ለንግድና ለመኖሪያ ሕንፃዎች ዘመናዊ 3D ውጫዊ ገጽታዎችን ይነድፋል፣ የምህንድስና ሥራ ያከናውናል፣ ያመርታል። የፈጠራ ራዕይን ከምህንድስና ትክክለኛነት ጋር በማዋሃድ ለሕንፃዎች ጥልቀት፣ የገጽታ ልዩነትና ቅርጽ እንሰጣለን።",
+    "intro": "ዘ ዲዛይን ላብ ለንግድና ለመኖሪያ ሕንፃዎች ዘመናዊ 3D ውጫዊ ገጽታዎችን ይነድፋል፣ የምህንድስና ሥራ ያከናውናል፣ ያመርታል።",
+    "introExtended": "የፈጠራ ራዕይን ከምህንድስና ትክክለኛነት ጋር በማዋሃድ ለሕንፃዎች ጥልቀት፣ የገጽታ ልዩነትና ቅርጽ እንሰጣለን።",
     "intro2": "ከምክክርና ከፓራሜትሪክ ሞዴሊንግ ጀምሮ እስከ 3D ምስላዊ ማሳያ፣ አካላዊ ናሙና፣ ማምረትና በቦታው ተከላ ድረስ የተሟላ አገልግሎት እንሰጣለን። እያንዳንዱን እጥፋት፣ ቅርጽና መገጣጠሚያ በጥንቃቄ እናዘጋጃለን።",
     "explore": "ሥራዎቻችንን ይመልከቱ",
     "scroll": "ለማየት ወደ ታች ይሸብልሉ",
@@ -380,7 +382,8 @@
       "Sirrummaa injinariingii.",
       "Ibsa arkiteekcharii."
     ],
-    "intro": "The Design Lab gamoowwan daldalaa fi jireenyaatiif fuuldura gamoo 3D ammayyaa dizaayinii godha, hojii injinariingii irratti hojjeta, ni oomisha. Mul’ata kalaqaa fi sirrummaa injinariingii walitti fiduun gamoowwaniif gad fageenya, boca fi bareedina kennina.",
+    "intro": "The Design Lab gamoowwan daldalaa fi jireenyaatiif fuuldura gamoo 3D ammayyaa dizaayinii godha, hojii injinariingii irratti hojjeta, ni oomisha.",
+    "introExtended": "Mul’ata kalaqaa fi sirrummaa injinariingii walitti fiduun gamoowwaniif gad fageenya, boca fi bareedina kennina.",
     "intro2": "Tajaajilli keenya gorsa, moodeela paaraameetirikii, agarsiisa 3D fi viidiyoo, saamuda qabatamaa, oomishaa fi dhaabbii iddoo hojii hammata. Dachaafama, boca fi walitti hidhamiinsa hunda of eeggannoon qopheessina.",
     "explore": "Hojii keenya ilaalaa",
     "scroll": "ARGUUF GADI SOCHOOSAA",

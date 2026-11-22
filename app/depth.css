@@ -1,0 +1,278 @@
+.portfolio-depth {
+  position: relative;
+  isolation: isolate;
+  --depth-shade: rgb(53 34 19 / .19);
+  --depth-reflection: rgb(118 78 41 / .12);
+  --depth-ray: rgb(66 42 25 / .18);
+}
+
+[data-theme="dark"] .portfolio-depth {
+  --depth-shade: rgb(0 0 0 / .55);
+  --depth-reflection: rgb(234 172 97 / .26);
+  --depth-ray: rgb(250 199 130 / .2);
+}
+
+.hero-editorial {
+  display: flex;
+  min-height: min(720px, calc(100svh - 100px));
+  flex-direction: column;
+  justify-content: center;
+  padding-block: clamp(52px, 7vw, 110px);
+  overflow: clip;
+}
+
+.hero-editorial h1 {
+  max-width: 100%;
+  font-size: clamp(44px, 7.4vw, 123px);
+  line-height: .94;
+  letter-spacing: -.072em;
+}
+
+.hero-title-line + .hero-title-line { margin-top: .075em; }
+
+.hero-editorial .intro-row {
+  display: block;
+  max-width: 650px;
+  margin-top: clamp(25px, 3vw, 52px);
+}
+
+.hero-editorial .hero-background {
+  inset: -12px;
+}
+
+.hero-editorial .hero-background::after {
+  background:
+    linear-gradient(0deg, var(--hero-base), transparent 60%),
+    linear-gradient(90deg, var(--hero-scrim) 36%, var(--hero-edge));
+}
+
+.hero-lattice {
+  position: absolute;
+  z-index: -1;
+  inset: -32% -26% -45% 36%;
+  pointer-events: none;
+  opacity: .68;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 110px, var(--depth-shade) 110px 137px),
+    repeating-linear-gradient(0deg, transparent 0 178px, var(--depth-ray) 178px 180px, var(--depth-shade) 181px 198px);
+  transform: skewY(-26deg) skewX(17deg);
+  mask-image: radial-gradient(ellipse at 66% 45%, #000 5%, transparent 73%);
+}
+
+.portfolio-light { display: none; }
+
+.portfolio-depth :is(.catalogue-studio, .real-collection, .process) {
+  background: color-mix(in srgb, var(--bg) 91%, var(--panel));
+}
+
+.portfolio-depth .hero-image {
+  height: clamp(370px, 54vw, 770px);
+}
+
+.portfolio-depth .hero-image img { object-position: center 48%; }
+
+.portfolio-depth .project-title-row .micro { white-space: nowrap; }
+
+@media (max-width: 720px) {
+  .hero-editorial {
+    min-height: auto;
+    padding-block: 48px 80px;
+  }
+
+  .hero-editorial h1 {
+    font-size: clamp(40px, 9.4vw, 65px);
+    line-height: 1;
+    letter-spacing: -.055em;
+  }
+
+  .hero-editorial .hero-background::after { background: var(--hero-scrim); }
+  .hero-lattice { inset-inline-start: 14%; }
+  .portfolio-depth .hero-image { height: clamp(340px, 95vw, 490px); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .portfolio-depth [data-light-region][data-lit] {
+    --light-offset-x: calc(-1 * var(--surface-x, 0));
+    --light-offset-y: calc(-1 * var(--surface-y, 0));
+  }
+
+  .hero-heading > .eyebrow {
+    animation: content-arrive .7s var(--arrival-ease) .05s both;
+  }
+
+  .hero-editorial .hero-title-line > * {
+    animation-name: title-in-depth;
+  }
+
+  .hero-heading h1, .portfolio-depth .scroll-section h2 {
+    text-shadow:
+      calc(2px + var(--light-offset-x, 0) * 5px) calc(2px + var(--light-offset-y, 0) * 5px) 0 var(--depth-shade),
+      calc(6px + var(--light-offset-x, 0) * 21px) calc(8px + var(--light-offset-y, 0) * 19px) 16px var(--depth-shade),
+      calc(-1px + var(--light-offset-x, 0) * -5px) calc(-1px + var(--light-offset-y, 0) * -5px) 23px var(--depth-reflection);
+    transition: text-shadow .28s ease-out;
+  }
+
+  .hero-lattice {
+    transform: translate3d(calc(var(--light-offset-x, 0) * 126px), calc(var(--light-offset-y, 0) * 84px), 0)
+      skewY(-26deg) skewX(17deg);
+    transition: transform .42s var(--arrival-ease);
+  }
+
+  .hero-editorial .hero-background {
+    transform: translate3d(calc(var(--light-offset-x, 0) * 9px), calc(var(--light-offset-y, 0) * 8px), 0);
+    transition: transform .42s var(--arrival-ease);
+  }
+
+  .portfolio-depth .scroll-section[data-scroll-ready] {
+    overflow: clip;
+    --section-lift: 116px;
+    --section-distance: 162px;
+    --section-pitch: 15deg;
+    --section-turn: 8deg;
+    --section-inset: 22px;
+  }
+
+  .portfolio-depth .scroll-section:nth-of-type(even) { --section-turn: -8deg; }
+
+  .portfolio-depth .scroll-section[data-scroll-ready] > .scroll-section-body {
+    --section-unsettled: clamp(0, calc(1 - var(--section-progress, 1)), 1);
+    transform-origin: center top;
+    transform: perspective(1350px)
+      translate3d(0, calc(var(--section-lift) * var(--section-unsettled)), calc(-1 * var(--section-distance) * var(--section-unsettled)))
+      rotateX(calc(-1 * var(--section-pitch) * var(--section-unsettled)))
+      rotateY(calc(var(--section-turn) * var(--section-unsettled)));
+    opacity: calc(1 - .34 * var(--section-unsettled));
+    clip-path: inset(0 calc(var(--section-inset) * var(--section-unsettled)) round calc(20px * var(--section-unsettled)));
+  }
+
+  .portfolio-depth .scroll-section[data-scroll-ready] > .scroll-section-body::before {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    inset: 0 0 auto;
+    height: 3px;
+    pointer-events: none;
+    opacity: var(--section-unsettled);
+    background: linear-gradient(90deg, transparent, var(--accent) 46%, var(--accent) 56%, transparent);
+    transform: translateX(calc(-18% * var(--section-unsettled))) scaleX(calc(.24 + .76 * var(--section-progress, 1)));
+  }
+
+  .portfolio-depth .scroll-section[data-scroll-ready]:focus-within > .scroll-section-body {
+    transform: none;
+    opacity: 1;
+    clip-path: none;
+  }
+
+  .portfolio-depth .scroll-section[data-scroll-ready]:focus-within > .scroll-section-body::before { opacity: 0; }
+
+  .portfolio-depth .section-heading[data-reveal-state="pending"] h2 {
+    transform: perspective(800px) translateZ(-42px) rotateX(-30deg);
+    transform-origin: center bottom;
+  }
+
+  .portfolio-depth .section-heading[data-reveal-state="shown"] h2 {
+    transition:
+      clip-path .9s var(--scroll-reveal-ease) .06s,
+      opacity .64s ease .06s,
+      translate .9s var(--scroll-reveal-ease) .06s,
+      transform .9s var(--scroll-reveal-ease) .06s,
+      text-shadow .28s ease-out;
+  }
+
+  .portfolio-depth .reveal[data-reveal-state="pending"] .reveal-caption {
+    transform: perspective(800px) translateZ(-24px) rotateX(-12deg);
+  }
+
+  .portfolio-depth .reveal[data-reveal-state="shown"] .reveal-caption {
+    transition:
+      opacity .64s ease var(--caption-delay),
+      translate .78s var(--scroll-reveal-ease) var(--caption-delay),
+      transform .78s var(--scroll-reveal-ease) var(--caption-delay);
+  }
+
+  .portfolio-depth :where(button, .text-link, .scroll-pill, summary, .site-header a):active {
+    scale: .94;
+    rotate: x -12deg;
+    transition: scale .16s var(--arrival-ease), rotate .16s var(--arrival-ease);
+  }
+
+  .comparison-photos {
+    transform: perspective(1000px) translateZ(-55px) rotateY(7deg);
+    transition: opacity .32s ease, transform .60s var(--arrival-ease);
+  }
+
+  .comparison-photos[data-active="true"] { transform: none; }
+
+  .comparison-handle { transition: scale .22s var(--arrival-ease); }
+  .comparison-range:active + .comparison-handle { scale: .91; }
+
+  .project-detail-body {
+    transform-origin: center top;
+    animation: content-in-depth .48s var(--arrival-ease) both;
+  }
+
+  dialog[open] { animation: content-in-depth .45s var(--arrival-ease) both; }
+  .modal-photo { animation: photo-in-depth .45s var(--arrival-ease) both; }
+
+  @media (any-hover: hover) and (any-pointer: fine) {
+    .portfolio-light {
+      display: block;
+      position: fixed;
+      z-index: 4;
+      top: 0;
+      left: 0;
+      width: clamp(285px, 51vw, 790px);
+      aspect-ratio: 1;
+      margin: 0;
+      translate: -50% -50%;
+      opacity: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 52% 46%, var(--depth-reflection), transparent 61%),
+        repeating-linear-gradient(128deg, transparent 0 51px, var(--depth-shade) 53px 59px, transparent 65px 115px);
+      mask-image: radial-gradient(ellipse, #000 3%, transparent 68%);
+      transition: opacity .38s ease, transform .21s cubic-bezier(.18, .7, .31, 1);
+    }
+
+    .portfolio-light[data-lit] { opacity: .63; }
+
+    .portfolio-depth .depth-plane {
+      transition: transform .38s var(--arrival-ease), filter .35s ease,
+        clip-path 1.06s var(--scroll-reveal-ease) var(--reveal-delay, 0ms);
+    }
+
+    .portfolio-depth [data-depth-card][data-lit] .depth-plane {
+      transform: perspective(900px) translateZ(26px)
+        rotateX(calc(-11deg * var(--card-y, 0))) rotateY(calc(12deg * var(--card-x, 0)));
+      filter: brightness(1.055) saturate(1.07);
+    }
+
+    .portfolio-depth [data-depth-card]:active .depth-plane {
+      transform: perspective(900px) translateZ(-35px) rotateX(-5deg);
+    }
+  }
+
+  @media (max-width: 720px) {
+    .portfolio-depth .scroll-section[data-scroll-ready] {
+      --section-lift: 77px;
+      --section-distance: 96px;
+      --section-pitch: 10deg;
+      --section-inset: 6px;
+    }
+  }
+}
+
+@keyframes title-in-depth {
+  from { opacity: .1; transform: perspective(900px) translate3d(0, 96%, -85px) rotateX(-55deg); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes content-in-depth {
+  from { opacity: .32; transform: perspective(1050px) translate3d(0, 22px, -108px) rotateX(-14deg); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes photo-in-depth {
+  from { opacity: .25; transform: perspective(1000px) translate3d(23px, 0, -92px) rotateY(-12deg); }
+  to { opacity: 1; transform: none; }
+}

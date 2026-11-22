@@ -461,6 +461,17 @@ html[data-theme="dark"] {
   height: 100%;
   object-fit: cover;
   object-position: center 52%;
+  opacity: 0;
+}
+
+.hero-background video[data-frame-visible="true"] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-background video {
+    transition: opacity 1.2s ease-in;
+  }
 }
 
 .hero-background::after {
@@ -742,4 +753,14 @@ html[data-theme="dark"] {
 @keyframes dialog-arrive {
   from { opacity: .55; transform: translateY(12px) scale(.985); }
   to { opacity: 1; transform: none; }
+}
+
+.hero-intro-extended {
+  display: none;
+}
+
+@media (min-width: 1440px) {
+  .hero-intro-extended {
+    display: inline;
+  }
 }
